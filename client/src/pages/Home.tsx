@@ -186,6 +186,16 @@ export default function Home() {
             </Button>
             <Button 
               size="lg" 
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold px-8 py-6 text-lg"
+              asChild
+            >
+              <a href="/trinode">
+                <Zap className="w-5 h-5 mr-2" />
+                TriNode Dashboard
+              </a>
+            </Button>
+            <Button 
+              size="lg" 
               variant="outline" 
               className="border-primary/50 text-primary hover:bg-primary/10 px-8 py-6 text-lg"
               asChild
