@@ -5,6 +5,8 @@ import { ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
 import TriNodeDashboard from "@/components/TriNodeDashboard";
 import AnalyticsPanel from "@/components/AnalyticsPanel";
+import LambdaChart from "@/components/LambdaChart";
+import NodeHealthDashboard from "@/components/NodeHealthDashboard";
 
 export default function TriNodePage() {
   const [, setLocation] = useLocation();
@@ -92,13 +94,29 @@ export default function TriNodePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics & Export</TabsTrigger>
+            <TabsTrigger value="lambda">Lambda Chart</TabsTrigger>
+            <TabsTrigger value="health">Node Health</TabsTrigger>
+            <TabsTrigger value="analytics">Analytics</TabsTrigger>
           </TabsList>
 
           <TabsContent value="dashboard">
             <TriNodeDashboard />
+          </TabsContent>
+
+          <TabsContent value="lambda">
+            <LambdaChart
+              data={[
+                { timestamp: new Date().toISOString(), lambda: 1.5, stage: "VERIFICATION" },
+                { timestamp: new Date(Date.now() - 60000).toISOString(), lambda: 1.4, stage: "VERIFICATION" },
+                { timestamp: new Date(Date.now() - 120000).toISOString(), lambda: 1.6, stage: "THRESHOLD" },
+              ]}
+            />
+          </TabsContent>
+
+          <TabsContent value="health">
+            <NodeHealthDashboard />
           </TabsContent>
 
           <TabsContent value="analytics">
