@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
 import TriNodeDashboard from "@/components/TriNodeDashboard";
+import AnalyticsPanel from "@/components/AnalyticsPanel";
 
 export default function TriNodePage() {
   const [, setLocation] = useLocation();
@@ -88,8 +90,21 @@ export default function TriNodePage() {
           </div>
         </div>
 
-        {/* Dashboard */}
-        <TriNodeDashboard />
+        {/* Tabs */}
+        <Tabs defaultValue="dashboard" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-8">
+            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+            <TabsTrigger value="analytics">Analytics & Export</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="dashboard">
+            <TriNodeDashboard />
+          </TabsContent>
+
+          <TabsContent value="analytics">
+            <AnalyticsPanel />
+          </TabsContent>
+        </Tabs>
 
         {/* Instructions */}
         <div className="mt-12 max-w-4xl mx-auto">
