@@ -7,6 +7,7 @@ import TriNodeDashboard from "@/components/TriNodeDashboard";
 import AnalyticsPanel from "@/components/AnalyticsPanel";
 import LambdaChart from "@/components/LambdaChart";
 import NodeHealthDashboard from "@/components/NodeHealthDashboard";
+import LocalAIDashboard from "@/components/LocalAIDashboard";
 
 export default function TriNodePage() {
   const [, setLocation] = useLocation();
@@ -93,13 +94,18 @@ export default function TriNodePage() {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+        <Tabs defaultValue="local-ai" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
+            <TabsTrigger value="local-ai">Local AI</TabsTrigger>
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="lambda">Lambda Chart</TabsTrigger>
             <TabsTrigger value="health">Node Health</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="local-ai">
+            <LocalAIDashboard />
+          </TabsContent>
 
           <TabsContent value="dashboard">
             <TriNodeDashboard />

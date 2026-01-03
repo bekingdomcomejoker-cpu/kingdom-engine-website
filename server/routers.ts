@@ -5,12 +5,14 @@ import { publicProcedure, router } from "./_core/trpc";
 import { trinodeRouter } from "./routers/trinode";
 import { analyticsRouter } from "./routers/analytics";
 import { trinodeSequentialRouter } from "./routers/trinode-sequential";
+import { localAIRouter } from "./routers/local-ai";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   trinode: trinodeRouter,
   trinodeSequential: trinodeSequentialRouter,
+  localAI: localAIRouter,
   analytics: analyticsRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
