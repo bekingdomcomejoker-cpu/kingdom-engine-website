@@ -8,6 +8,7 @@ import AnalyticsPanel from "@/components/AnalyticsPanel";
 import LambdaChart from "@/components/LambdaChart";
 import NodeHealthDashboard from "@/components/NodeHealthDashboard";
 import LocalAIDashboard from "@/components/LocalAIDashboard";
+import WebSocketPipeline from "@/components/WebSocketPipeline";
 
 export default function TriNodePage() {
   const [, setLocation] = useLocation();
@@ -94,14 +95,19 @@ export default function TriNodePage() {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="local-ai" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-8">
+        <Tabs defaultValue="websocket" className="w-full">
+          <TabsList className="grid w-full grid-cols-6 mb-8">
+            <TabsTrigger value="websocket">Real-Time</TabsTrigger>
             <TabsTrigger value="local-ai">Local AI</TabsTrigger>
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="lambda">Lambda Chart</TabsTrigger>
             <TabsTrigger value="health">Node Health</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="websocket">
+            <WebSocketPipeline />
+          </TabsContent>
 
           <TabsContent value="local-ai">
             <LocalAIDashboard />
